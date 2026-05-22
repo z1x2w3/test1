@@ -1,0 +1,23 @@
+name: Scheduled Task Test
+
+on:
+  schedule:
+    # POSIX cron 语法：https://crontab.guru/ 可以在线辅助生成
+    # 格式：分 时 日 月 星期
+    # 下面这行代表“每一分钟”运行一次（仅用于快速测试）
+    - cron: '* * * * *' 
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Execute Python script
+        run: python hello.py
